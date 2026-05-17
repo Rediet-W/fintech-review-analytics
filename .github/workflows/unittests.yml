@@ -1,20 +1,29 @@
-name: Python Unit Tests
+name: Fintech Analytics Pipeline CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main, task-1, task-2]
+  pull_request:
+    branches: [main]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+
+      - name: Set Up Python 3.11 Environment
         uses: actions/setup-python@v4
         with:
-          python-version: "3.10"
-      - name: Install dependencies
+          python-version: "3.11"
+
+      - name: Install Modular Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Run tests
+
+      - name: Execute Automated Pytest Suite
         run: |
-          python -m unittest discover tests
+          pytest tests/
