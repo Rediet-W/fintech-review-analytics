@@ -76,8 +76,12 @@ def preprocess_data(df: pd.DataFrame) -> pd.DataFrame:
     # 3. Date Normalization
     df['date'] = pd.to_datetime(df['date']).dt.strftime('%Y-%m-%d')
     
-    print(f"[i] Data Cleansing Ledger | Duplicates Dropped: {dup_drop_count} | Nulls Dropped: {null_drop_count} | Final Clean Count: {len(df)}")
-    return df[['review_id', 'review_text', 'rating', 'date', 'bank', 'source']]
+    # Rename 'review_text' to 'review' to meet strict column naming specifications
+    df = df.rename(columns={'review_text': 'review'})
+    
+    print(f"[i] Cleansing Ledger | Duplicates Dropped: {dup_drop_count} | Nulls Dropped: {null_drop_count} | Clean Count: {len(df)}")
+    
+    return df[['review', 'rating', 'date', 'bank', 'source']]
 
 if __name__ == "__main__":
     # Standardized Active Ethiopian Banking App Packages
