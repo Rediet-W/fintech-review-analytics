@@ -108,7 +108,7 @@ class FintechTextMiningEngine:
         
         # Output exact target columns matching consulting requirements
         final_df = df.rename(columns={'review': 'review_text'})
-        output_cols = ['review_id', 'review_text', 'sentiment_label', 'sentiment_score', 'identified_theme', 'bank', 'rating']
+        output_cols = ['review_id', 'review_text', 'sentiment_label', 'sentiment_score', 'identified_theme', 'bank', 'rating', 'date', 'source']
         
         final_df[output_cols].to_csv(output_csv, index=False)
         print(f"[✓] Analysis complete. Metrics successfully written to: {output_csv}")

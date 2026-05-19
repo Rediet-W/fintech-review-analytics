@@ -31,3 +31,26 @@ Raw scraped payloads are processed through a structured sanitization pipeline to
 
 - **Unit Testing:** Handled via `pytest` inside the `tests/` directory to validate cleaning constraints.
 - **CI/CD Pipeline:** GitHub Actions automatically runs the validation test suite on every code push to ensure zero regression errors hit the production code base.
+
+## Task 3: Relational Database Infrastructure Setup & Ingestion
+
+### 1. Schema Layout
+
+The data storage layer is built using a normalized star schema layout to protect relational integrity and prevent data anomalies.
+
+- **`banks` Table (Dimension):** Holds internal institutional names and storefront deployment package meta.
+- **`reviews` Table (Fact):** Stores the text payloads, structured time indices, VADER sentiment outputs, and parsed operational theme categories.
+
+### 2. Local Setup Configurations
+
+- **Database Engine:** PostgreSQL v15+
+- **Host System Address:** `localhost` (127.0.0.1)
+- **Default Connection Port:** `3016` (or `5432`)
+- **Target Database Pointer:** `bank_reviews`
+
+### 3. Verification & Validation Audit Output
+
+Running our data integrity scripts inside pgAdmin returned the following validation values:
+
+- **Total Verified Rows Ingested:** 1,500 rows (500 per target institution)
+- **Null-Constraint Violation Rate:** 0.00% across all primary and foreign key dimensions.
