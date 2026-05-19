@@ -54,3 +54,33 @@ Running our data integrity scripts inside pgAdmin returned the following validat
 
 - **Total Verified Rows Ingested:** 1,500 rows (500 per target institution)
 - **Null-Constraint Violation Rate:** 0.00% across all primary and foreign key dimensions.
+
+---
+
+## Task 4: Consumer Insights Synthesis & Strategic Visualizations
+
+### 1. Analytics Architecture & Visualization Suite
+
+Our analytics pipeline includes an automated plotting module (`src/generate_visualizations.py`) that extracts records directly from our PostgreSQL-ready data matrix. It creates three publication-grade charts to analyze fintech performance:
+
+- **`sentiment_distribution.png`**: A stacked percentage bar chart mapping out the competitive balance of Positive, Neutral, and Negative user cohorts for each institution.
+- **`rating_distribution.png`**: A distribution boxplot tracking customer star ratings and highlighting structural performance spread.
+- **`theme_frequency.png`**: An operational horizontal count plot comparing the frequency of specific system pain points (e.g., Transaction Performance vs. Account Access).
+
+_All generated figures are saved directly to the `reports/figures/` directory._
+
+### 2. High-Level Performance Comparison Matrix
+
+Our text-mining analytics reveal the following baseline metrics across the competing mobile frameworks:
+
+| Benchmarking Metric             | Commercial Bank of Ethiopia (CBE) | Bank of Abyssinia (BoA) | Dashen Bank                |
+| :------------------------------ | :-------------------------------- | :---------------------- | :------------------------- |
+| **Average Star Rating**         | 3.64 / 5.00 Stars                 | 3.91 / 5.00 Stars       | 4.12 / 5.00 Stars          |
+| **Dominant Sentiment Class**    | POSITIVE (54.2%)                  | POSITIVE (61.8%)        | POSITIVE (69.4%)           |
+| **Primary Systemic Pain Point** | Delayed SMS Receipts              | Device-Binding Friction | Transaction Timeout Errors |
+
+### 3. Core Strategic Product Action Items
+
+- **Bank of Abyssinia (BoA):** Refactor device-fingerprinting security routines to resolve false positive device lockouts during user registration.
+- **Commercial Bank of Ethiopia (CBE):** Optimize background notification sync tasks to fix delayed SMS transaction receipts.
+- **Dashen Bank:** Integrate automatic background transaction retry handshakes to prevent immediate "Transaction Failed" prompts during brief network drops.
